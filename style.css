@@ -1,0 +1,46 @@
+body,html {
+    margin: 0;
+    padding: 0;
+    background-color: lightgrey;
+    color: white;
+    height: 100%;
+    width: 100%;
+}
+#container {
+    display: flex;
+    gap: 1em;
+    min-height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#container div {
+    flex:1;
+}
+
+#left-section {
+    margin-top: 1em;
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    height: 35em;
+    align-items: center;
+}
+
+
+.canvas {
+    display: grid;
+    background-color: white;
+    width: 35em;
+    height: 35em;
+    box-shadow: 0 0 1em black;
+}
+
+#pen-color {
+    width: 5em;
+    height: 5em;
+}
+
+.cell {
+    border: 1 solid black;
+}
