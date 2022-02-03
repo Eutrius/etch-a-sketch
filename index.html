@@ -10,13 +10,25 @@
 <body>
     <div id="container">
         <div id="left-section">
-            <p>Pen</p>
-                <input type="color" id="pen-color">
+            <h1>- Pen -</h1>
+            <div id="color-picker-pen-button" class="color-picker-button">
+                <input type="color" id="color-picker-pen">
+            </div>
+            <div id="normal" class="button pen-mode selectedMode">Normal</div>
+            <div id="eraser" class="button pen-mode">Eraser</div>
+            <div id="rainbow" class="button pen-mode">Rainbow</div>
             
         </div>
         <div id="center-section">
         </div>
-        <div id="right-section"></div>
+        <div id="right-section">
+            <h1>- Canvas -</h1>
+            <div id="color-picker-canvas-button" class="color-picker-button">
+                <input type="color" id="color-picker-canvas">
+            </div>
+            <input type="range" min="8" max="64" value="16" id="size-range">
+            <div id="clear" class="button">Clear</div>
+        </div>
          
 
     </div>

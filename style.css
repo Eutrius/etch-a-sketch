@@ -2,9 +2,11 @@ body,html {
     margin: 0;
     padding: 0;
     background-color: lightgrey;
-    color: white;
+    color: black;
     height: 100%;
     width: 100%;
+    user-select: none;
+    cursor: default;
 }
 #container {
     display: flex;
@@ -27,6 +29,55 @@ body,html {
     align-items: center;
 }
 
+#right-section {
+    margin-top: 1em;
+    margin-right: 1em;
+    display: flex;
+    flex-direction: column;
+    height: 35em;
+    align-items: center;
+}
+
+#color-picker-pen {
+    visibility: hidden;
+    margin-top: 4em;
+    margin-left: 3em;
+}
+
+#color-picker-canvas {
+    visibility: hidden;
+    margin-top: 4em;
+    margin-left: -13em;
+}
+
+#size-range{
+    margin-top: 2em;
+    -webkit-appearance: none;
+    border-radius: 1em;
+    background-color: grey;
+    height: 1em;
+    width: 12em;
+}
+
+#size-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: lightgrey;
+    border: 1px solid grey;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+#size-range::-webkit-slider-thumb:active {
+    transform: scale(1.1);
+}
+
+#clear:active{
+    animation: forwards clearButtonClick;
+    animation-duration: 0.1s;
+}
+
 
 .canvas {
     display: grid;
@@ -36,11 +87,56 @@ body,html {
     box-shadow: 0 0 1em black;
 }
 
-#pen-color {
-    width: 5em;
-    height: 5em;
+.cell {
+    border-collapse: collapse;
+    border: 1px groove
 }
 
-.cell {
-    border: 1 solid black;
+
+.button {
+    margin-top: 2em;
+    padding-top: 0.5em;
+    border: 0.2em solid grey;
+    text-align: center;
+    width: 5em;
+    max-height: 1.5em;
 }
+
+.color-picker-button {
+    box-shadow: 0 0 1em grey;
+    border: 0.2em solid grey;
+    border-radius: 50%;
+    width: 5em;
+    max-height: 5em;
+
+}
+
+.button:hover,.color-picker-button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.selectedMode {
+    width: 5em;
+    max-height: 1.5em;
+    margin-top: 2em;
+    padding-top: 0.5em;
+    text-align: center;
+    border: 0.2em solid grey;
+    background-color: grey;
+    color: white;
+    cursor: default;
+
+}
+
+@keyframes clearButtonClick {
+    to {
+        background-color: grey;
+        color: white;
+    }
+}
+
+
+
+
+
