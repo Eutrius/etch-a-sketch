@@ -14,7 +14,7 @@
             <div id="color-picker-pen-button" class="color-picker-button">
                 <input type="color" id="color-picker-pen">
             </div>
-            <div id="normal" class="button pen-mode selectedMode">Normal</div>
+            <div id="normal" class="pen-mode selected-mode">Normal</div>
             <div id="eraser" class="button pen-mode">Eraser</div>
             <div id="rainbow" class="button pen-mode">Rainbow</div>
             
@@ -24,19 +24,20 @@
         <div id="right-section">
             <h1>- Canvas -</h1>
             <div id="color-picker-canvas-button" class="color-picker-button">
+                <p>16x16</p>
                 <input type="color" id="color-picker-canvas">
+                
             </div>
             <input type="range" min="8" max="64" value="16" id="size-range">
-            <div id="clear" class="button">Clear</div>
+            <div id="clear" class="button">Generate</div>
+            <div id="grid-line" class="button">Grid Line</div>
         </div>
          
 
     </div>
-    
-
-
-
-
+    <footer>
+        <p>The Odin Project: Etch a Sketch | © Eutrius <script>document.write(new Date().getFullYear())</script></p>
+    </footer>
     <script src="main.js"></script>
 </body>
 </html>

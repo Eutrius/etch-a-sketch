@@ -11,13 +11,17 @@ body,html {
 #container {
     display: flex;
     gap: 1em;
-    min-height: 100%;
+    min-height: 92%;
     justify-content: center;
     align-items: center;
 }
 
 #container div {
     flex:1;
+}
+
+#center-section {
+    text-align: center;
 }
 
 #left-section {
@@ -27,6 +31,11 @@ body,html {
     flex-direction: column;
     height: 35em;
     align-items: center;
+}
+
+footer{
+    width: 100%;
+    text-align: center;
 }
 
 #right-section {
@@ -40,14 +49,11 @@ body,html {
 
 #color-picker-pen {
     visibility: hidden;
-    margin-top: 4em;
-    margin-left: 3em;
 }
 
 #color-picker-canvas {
+    position: fixed;
     visibility: hidden;
-    margin-top: 4em;
-    margin-left: -13em;
 }
 
 #size-range{
@@ -56,8 +62,9 @@ body,html {
     border-radius: 1em;
     background-color: grey;
     height: 1em;
-    width: 12em;
+    width: 9em;
 }
+
 
 #size-range::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -73,10 +80,13 @@ body,html {
     transform: scale(1.1);
 }
 
+
 #clear:active{
     animation: forwards clearButtonClick;
     animation-duration: 0.1s;
 }
+
+
 
 
 .canvas {
@@ -86,12 +96,6 @@ body,html {
     height: 35em;
     box-shadow: 0 0 1em black;
 }
-
-.cell {
-    border-collapse: collapse;
-    border: 1px groove
-}
-
 
 .button {
     margin-top: 2em;
@@ -103,6 +107,9 @@ body,html {
 }
 
 .color-picker-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     box-shadow: 0 0 1em grey;
     border: 0.2em solid grey;
     border-radius: 50%;
@@ -111,12 +118,12 @@ body,html {
 
 }
 
-.button:hover,.color-picker-button:hover {
+.button:hover,.color-picker-button:hover,#grid-line:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
 
-.selectedMode {
+.selected-mode {
     width: 5em;
     max-height: 1.5em;
     margin-top: 2em;
@@ -127,6 +134,10 @@ body,html {
     color: white;
     cursor: default;
 
+}
+
+.show-grid-line {
+    border: 1px groove;
 }
 
 @keyframes clearButtonClick {

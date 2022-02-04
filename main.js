@@ -5,15 +5,19 @@ const penMode = Array.from(document.getElementsByClassName("pen-mode"));
 const colorPickerCanvas = document.getElementById("color-picker-canvas");
 const colorPickerCanvasButton = document.getElementById("color-picker-canvas-button"); 
 const clear = document.getElementById("clear");
+const sizeRange = document.getElementById("size-range");
+const gridLine = document.getElementById("grid-line");
 
 
 let pickedPenColor = "black";
 let pickedCanvasColor = "white";
 let penDown = false;
 let canvasSize = 16;
+let showGridline = false;
 
 colorPickerPenButton.style.backgroundColor = pickedPenColor;
 colorPickerCanvasButton.style.backgroundColor = pickedCanvasColor;
+
 
 penMode.forEach(element => {element.addEventListener("click",selectMode)});
 colorPickerPen.addEventListener("change",changePenColor);
@@ -21,6 +25,8 @@ colorPickerPenButton.addEventListener("mousedown",openColorPicker);
 colorPickerCanvas.addEventListener("change",changeCanvasColor);
 colorPickerCanvasButton.addEventListener("mousedown",openColorPicker);
 clear.addEventListener("click",clearCanvas);
+sizeRange.addEventListener("input",changeCanvasSize);
+gridLine.addEventListener("click",toggleGridLine);
 
 
 function generateCanvas(size,canvasColor) {
@@ -42,6 +48,9 @@ function generateCell(canvasNode,cellColor) {
     tempDiv.addEventListener("mouseup",togglePenUp);
     tempDiv.addEventListener("mousedown",color);
     tempDiv.addEventListener('mouseover',color);
+    if(showGridline) {
+        tempDiv.classList.toggle("show-grid-line");
+    }
     canvasNode.appendChild(tempDiv);
 }
 
@@ -62,13 +71,14 @@ function color(e) {
         penColor = generateRandomColor();
     }
     if (penDown) {
+        toggleGenerateButton(false);
         e.target.style.backgroundColor = penColor;
     }
 }
 
 function openColorPicker(e) {
-    let colorPickerButton = e.target;
-    let colorPicker = colorPickerButton.firstElementChild;
+    let colorPickerButton = e.currentTarget;
+    let colorPicker = colorPickerButton.lastElementChild;
     colorPicker.click();
 }
 
@@ -79,10 +89,10 @@ function changePenColor(e) {
 }
 
 function changeCanvasColor(e) {
+    toggleGenerateButton(true);
     let color = e.target.value;
     colorPickerCanvasButton.style.backgroundColor = color;
     pickedCanvasColor = color;
-    clearCanvas();
 }
 
 function clearCanvas() {
@@ -99,12 +109,12 @@ function selectMode(e) {
     }
     let element = e.target;
     element.classList.toggle("button");
-    element.classList.toggle("selectedMode");
+    element.classList.toggle("selected-mode");
     element.removeEventListener("click",selectMode);
 }
 
 function getActiveMode() {
-    let activeMode = document.getElementsByClassName("selectedMode")[0];
+    let activeMode = document.getElementsByClassName("selected-mode")[0];
     return activeMode;
 }
 
@@ -115,4 +125,33 @@ function generateRandomColor() {
     return `rgb(${r},${g},${b})`;
 }
 
+function changeCanvasSize(e) {
+    toggleGenerateButton(true);
+    let size = parseInt(e.target.value);
+    canvasSize = size;
+    colorPickerCanvasButton.firstElementChild.textContent = `${size}x${size}`;
+}
+
+function toggleGenerateButton(bool) {
+    if(bool) {
+        clear.textContent = "Generate"
+    } else {
+        clear.textContent = "Clear"
+    }
+}
+
+function toggleGridLine(e) {
+    let button = e.target;
+    let cells = Array.from(document.getElementsByClassName("cell"));
+    if(showGridline) {
+        showGridline = false;
+    } else {
+        showGridline = true;
+    }
+    button.classList.toggle("button");
+    button.classList.toggle("selected-mode");
+    cells.forEach(element => {
+        element.classList.toggle("show-grid-line");
+    })
+}
 generateCanvas(canvasSize,pickedCanvasColor);
